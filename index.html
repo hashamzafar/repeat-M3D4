@@ -88,13 +88,30 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script>
 
-        window.onload = ()=>{
+window.onload = ()=>{
+            url()}
+
+        let books = []
+         const url = () => {
+          fetch(' https://striveschool-api.herokuapp.com/books')
+          .then (response => response.json())
+          .then (data => {
+              console.log( 'first ',data)
+            books = data
+            console.log(books)
+            bookCard(books)
+          }) .then ()
+
+         }
+       
+         
+        
             const row = document.getElementById("row");
-        fetch(' https://striveschool-api.herokuapp.com/books')
-        .then(response => response.json())
-        .then(data => {
-        console.log(data)
-            data.forEach(book => {
+         
+        // .then(response => response.json())
+        // .then(data => {
+        const bookCard=()=>{
+            books.forEach(book => {
                 const card = `<div class="col-md-4">
               <div class="card mb-4 shadow-sm">
                
@@ -104,7 +121,7 @@
                   <text x="50%" y="50%" fill="#eceeef" dy=".3em">
                     
                   </text>
-                </svg>
+                
                 <div class="card-body">
                     
                   <p class="card-text">
@@ -139,11 +156,19 @@
 
 
             })
+        }
     
     
-    
-    })
-}
+    // })
+
+
+ 
+
+
+
+
+
+
     </script>
   </body>
 </html>
